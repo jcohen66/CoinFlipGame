@@ -50,6 +50,13 @@ object CoinFlipGame extends App {
           mainLoop(newGameState, random)
         }
       }
+      case "N" => {
+        printGameOver
+        printGameState(gameState)
+        val s = GameState(0,0)
+        val r = new Random()
+        mainLoop(s, r)
+      }
       case _ => {
         printGameOver
         printGameState(gameState)

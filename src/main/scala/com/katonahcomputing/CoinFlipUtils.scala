@@ -6,7 +6,7 @@ import com.katonahcomputing.domain.GameState
 import scala.util.Random
 
 object CoinFlipUtils {
-  def showPrompt: Unit = { print("\n(h)eads, (t)ails, or (q)uit: ") }
+  def showPrompt: Unit = { print("\n(h)eads, (t)ails, (n)ew, or (q)uit: ") }
 
   def getUserInput = readLine.trim.toUpperCase()
 
