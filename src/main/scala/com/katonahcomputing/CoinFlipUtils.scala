@@ -1,11 +1,11 @@
-package com
+package com.katonahcomputing
 
+import com.katonahcomputing.CoinFlipGame.s
 import com.katonahcomputing.domain.GameState
 
 import scala.util.Random
 
-object CoinFlipGame extends App {
-
+object CoinFlipUtils {
   def showPrompt: Unit = { print("\n(h)eads, (t)ails, or (q)uit: ") }
 
   def getUserInput = readLine.trim.toUpperCase()
@@ -31,30 +31,10 @@ object CoinFlipGame extends App {
     * @param r
     */
   def tossCoin(r: Random) = {
-    val i = r.nextInt()
+    val i = r.nextInt(2)
     i match {
       case 0 => "H"
       case 1 => "T"
     }
   }
-
-  var input = ""
-
-  while (input != "q") {
-
-    // prompt the player to select heads, tails or quit
-    // get the player's input
-    if(input == "q") {
-      // print the game summary
-      // quit
-    }
-
-    // flip the coin
-
-    // see if the player guessed correctly
-
-    // print the #flips and #correct
-  }
-
 }
-
