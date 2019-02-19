@@ -8,14 +8,14 @@ import scala.util.Random
 
 object CoinFlipGame extends App {
 
-
+  val history = List[GameState]()
   val s = GameState(0,0)
   val r = new Random()
-  mainLoop(s, r)
+  mainLoop(s, r, history)
 
 
   @tailrec
-  def mainLoop(gameState: GameState, random: Random) {
+  def mainLoop(gameState: GameState, random: Random, history: List[GameState]) {
 
     // a) prompt the user for input
     showPrompt
@@ -38,16 +38,18 @@ object CoinFlipGame extends App {
           // f) if the user didnt type 'h', loop again
           val newNumCorrectGuesses = gameState.numCorrectGuesses + 1
           val newGameState = gameState.copy(newNumFlips, newNumCorrectGuesses)
+          val newHistory: List[GameState] = newGameState :: history
           printGameState(printableFlipResult(coinTossResult),newGameState)
-          mainLoop(newGameState, random)
+          mainLoop(newGameState, random, newHistory)
         } else {
           // they guessed wrong
           // e) write the output
           // f) if the user didnt type 'h', loop again
           val newNumCorrectGuesses = gameState.numCorrectGuesses
           val newGameState = gameState.copy(newNumFlips, newNumCorrectGuesses)
+          val newHistory: List[GameState] = newGameState :: history
           printGameState(printableFlipResult(coinTossResult),newGameState)
-          mainLoop(newGameState, random)
+          mainLoop(newGameState, random, newHistory)
         }
       }
       case "N" => {
@@ -55,7 +57,8 @@ object CoinFlipGame extends App {
         printGameState(gameState)
         val s = GameState(0,0)
         val r = new Random()
-        mainLoop(s, r)
+        val newHistory: List[GameState] = s :: history
+        mainLoop(s, r, newHistory)
       }
       case _ => {
         printGameOver
